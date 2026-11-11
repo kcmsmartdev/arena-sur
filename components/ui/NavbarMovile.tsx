@@ -26,9 +26,19 @@ const Menu:LinksMenu[]=[
 export default function NavbarMovile(){
     const [isOpenMenu, setOpenMenu] =useState(false);
     const pathname = usePathname();
+
+
     useEffect(() => {
-    setOpenMenu(false);
-}, [pathname]);
+
+        setOpenMenu(false);
+
+    }, [pathname]);
+
+    useEffect(()=>{
+        document.body.style.overflow = isOpenMenu ? "hidden" : "";
+        return () => {document.body.style.overflow = "";};
+    }, [isOpenMenu])
+
     return(
         <div className="w-full  lg:hidden fixed  px-3 py-5 z-50">
             <nav className="w-full flex flex-row items-center justify-between">
@@ -52,8 +62,8 @@ export default function NavbarMovile(){
 
                 <div className={`absolute top-full left-0 z-40 w-full max-h-[calc(100dvh-80px)] overflow-y-auto overscroll-contain transition-all duration-300 ease-in-out
                     ${isOpenMenu ? "translate-y-0 opacity-100 visible" : " -translate-y-full opacity-0 invisible pointer-events-none"} `}>
-
-                        <div className="relative z-30 w-full px-5 py-12 bg-white rounded-4xl">
+                           
+                        <div className="relative z-30 w-full px-5 py-12 bg-white rounded-4xl shadow-2xl shadow-Primary">
                             <ul className="flex flex-col gap-2 py-7">
                                 {Menu.map((nav)=>{
                                     const isActive = pathname === nav.href;
@@ -62,7 +72,7 @@ export default function NavbarMovile(){
                                         key={nav.id}
                                         href={nav.href} 
                                         className={`w-fit py-1.5 border-2 border-transparent ${isActive ?" border-b-accent " :""}`}>
-                                            <span className="font-body text-2xl">
+                                            <span className="font-body text-xl">
                                                 {nav.name}
                                             </span>
                                         </Link>
