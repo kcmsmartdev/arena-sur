@@ -21,8 +21,8 @@ export default function Cta(){
 
             <Link
                 href="/contacto"
-                className="group flex items-center gap-5 bg-white text-black
-                px-6 py-3 rounded-4xl font-body text-sm font-semibold hover:bg-accent   
+                className="group flex items-center gap-5 bg-accent text-black
+                px-6 py-3 rounded-4xl font-body text-sm font-semibold hover:bg-white   
                 transition-all duration-300">
                 Hablemos ahora
 
