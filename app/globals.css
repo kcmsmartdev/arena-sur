@@ -3,18 +3,41 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+   /* Colores principales */
+  --color-primary: #173F3A;
+  --color-secondary: #65A69A;
+  --color-accent: #DDA21C;
+
+  /* Tonalidades complementarias */
+  --color-green-light: #B8CFC5;
+  --color-sand: #F0E9DC;
+  --color-white-warm: #F8F7F3;
+
+  /* Textos y superficies */
+  --color-dark: #242824;
+  --color-muted: #777B75;
+  --color-border: #E5E1D8;
+  --color-white: #FFFFFF;
 }
 
 @theme inline {
  
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
-  --color-Primary: #173F52;
-  --color-secondary: #657253;
-  --color-accent: #D49B1F;
 
-  --color-muted: #5F5F5F;
-  --color-muted-reverse: #C3C3C3;
+  --color-primary: #173F3A;
+  --color-secondary: #65A69A;
+  --color-accent: #DDA21C;
+  
+  --color-footer: #081413;
+  --color-green-light: #B8CFC5;
+  --color-sand: #F0E9DC;
+  --color-white-warm: #F8F7F3;
+
+  --color-dark: #242824;
+  --color-muted: #777B75;
+  --color-border: #E5E1D8;
+
   --color-white: #ffffff;
   --color-black: #000000;
 }

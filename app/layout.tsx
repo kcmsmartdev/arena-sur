@@ -4,11 +4,12 @@ import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import NavbarMovile from "@/components/ui/NavbarMovile";
 import type { Viewport } from "next";
+import Footer from "@/components/ui/Footer";
 
 const geistSans = Bricolage_Grotesque({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight:["200","400","700"],
+  weight:["200","400","700","800"],
   display:"swap"
 });
 
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Navbar />
         <NavbarMovile />
         {children}
+        <Footer />
       </body>
     </html>
   );

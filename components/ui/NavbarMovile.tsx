@@ -26,7 +26,7 @@ const Menu:LinksMenu[]=[
 export default function NavbarMovile(){
     const [isOpenMenu, setOpenMenu] =useState(false);
     const pathname = usePathname();
-
+    const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
 
@@ -39,16 +39,27 @@ export default function NavbarMovile(){
         return () => {document.body.style.overflow = "";};
     }, [isOpenMenu])
 
+    useEffect(()=>{
+        
+        const handleScroll=()=>{
+            setScrolled(scrollY > 50)
+        }
+
+        window.addEventListener("scroll", handleScroll,{passive:true})
+
+        return window.addEventListener("scroll", handleScroll)
+    },[])
+
     return(
-        <div className="w-full  lg:hidden fixed  px-3 py-5 z-50">
-            <nav className="w-full flex flex-row items-center justify-between">
+        <div className={`w-full  lg:hidden fixed   z-50 rounded-4xl ${scrolled ? "bg-black/20 backdrop-blur-2xl rounded-4x px-3 py-5" :"px-3 py-5"}`}>
+            <nav className={`w-full flex flex-row items-center justify-between`}>
                 <Link href={"/"}>
                     <Image
                     src="/logo-white-color.svg"
                     alt="logo"
                     width={160}
                     height={40}
-                    className="w-24 h-auto"/>
+                    className="w-20 h-auto"/>
                 </Link>
                 <button
                     type="button"
@@ -60,10 +71,10 @@ export default function NavbarMovile(){
                         : <HiOutlineMenu  className="size-5 text-white"/>}
                 </button>
 
-                <div className={`absolute top-full left-0 z-40 w-full max-h-[calc(100dvh-80px)] overflow-y-auto overscroll-contain transition-all duration-300 ease-in-out
+                <div className={`absolute top-full left-0 z-40 w-full max-h-[calc(100dvh-80px)] overflow-y-auto overscroll-contain transition-all duration-300 ease-in-out 
                     ${isOpenMenu ? "translate-y-0 opacity-100 visible" : " -translate-y-full opacity-0 invisible pointer-events-none"} `}>
                            
-                        <div className="relative z-30 w-full px-5 py-12 bg-white rounded-4xl shadow-2xl shadow-Primary">
+                        <div className="relative z-30 w-full px-5 py-8 bg-white rounded-4xl">
                             <ul className="flex flex-col gap-2 py-7">
                                 {Menu.map((nav)=>{
                                     const isActive = pathname === nav.href;

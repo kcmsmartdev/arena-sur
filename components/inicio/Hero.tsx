@@ -15,8 +15,8 @@ export default function Hero() {
             />
 
             <div className="relative z-30 px-6 pt-32 pb-20 text-center flex flex-col items-center justify-center">
-                <h1 className="font-heading font-bold text-4xl lg:text-7xl tracking-tight text-black w-full max-w-4xl mb-4">
-                    Comercializadora de <span className="text-amber-500 italic"><strong>minerales</strong></span> en Perú.
+                <h1 className="font-heading font-bold text-4xl lg:text-7xl tracking-tight text-primary w-full max-w-4xl mb-4">
+                    Comercializadora de <span className="text-secondary italic"><strong>minerales</strong></span> en Perú.
                 </h1>
 
                 <p className="font-body text-sm md:text-base text-muted w-full max-w-3xl">
@@ -26,16 +26,17 @@ export default function Hero() {
                 <div className="flex flex-col md:flex-row gap-4 mt-10">
                     <Link
                         href="/nuestros-servicios"
-                        className="bg-accent text-black px-6 py-3 rounded-4xl relative overflow-hidden group flex gap-2 items-center border  hover:border-black hover:border-2 transition-transform duration-300 ease-in-out">
+                        className="bg-accent text-black px-6 py-3 rounded-4xl relative overflow-hidden group flex gap-2 items-center border-2 border-black transition-transform duration-300 ease-in-out">
                         <span className="font-body text-sm">
                             Conoce nuestros servicios
                         </span>
-                        <VscDebugBreakpointLog className="size-5 group-hover:scale-120 transition-transform duration-300 ease-in-out"/>
+                        <VscDebugBreakpointLog 
+                        className="size-5 group-hover:scale-150  transition-transform duration-300 ease-in-out"/>
                     </Link>
 
                     <Link
                         href="/nuestros-servicios"
-                        className="bg-muted text-white px-6 py-3 rounded-4xl relative overflow-hidden">
+                        className="bg-muted text-white px-6 py-3 rounded-4xl border-2 border-black relative overflow-hidden hover:scale-105 transition-transform duration-300 ease-in-out">
                         <span className="font-body text-sm font-medium">
                             Contáctanos
                         </span>
