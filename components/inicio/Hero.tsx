@@ -15,7 +15,7 @@ export default function Hero() {
             />
 
             <div className="relative z-30 px-6 pt-32 pb-20 text-center flex flex-col items-center justify-center">
-                <h1 className="font-heading font-bold text-4xl lg:text-7xl tracking-tight text-primary w-full max-w-4xl mb-4">
+                <h1 className="font-heading font-bold text-4xl lg:text-7xl tracking-tight text-black w-full max-w-4xl mb-4">
                     Comercializadora de <span className="text-accent italic"><strong>minerales</strong></span> en Perú.
                 </h1>
 

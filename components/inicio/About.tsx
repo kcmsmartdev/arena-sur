@@ -19,16 +19,18 @@ const valoresContent:ValoresTypes[]=[
 ]
 export default function About(){
     return(
-        <section className="w-full">
-            <div className="max-w-7xl mx-auto px-3 py-28 flex flex-col gap-16">
+        <section className="w-full bg-white-warm rounded-b-4xl">
+            <div className="max-w-7xl mx-auto px-3 py-28 flex flex-col gap-16 ">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                    <div className="w-full bg-white-warm px-5 py-7 rounded-4xl flex flex-col gap-4">
-                        <span className="font-heading uppercase tracking-widest text-primary text-xs font-semibold">SOBRE ARENA SUR SAC</span>
-                        <h2 className="font-heading text-4xl lg:text-5xl text-primary mb-5 font-bold mt-2">
-                            Comprometidos con la comercialización de <span className="italic">minerales.</span>
+                    <div className="w-full bg-sand px-5 py-7 rounded-4xl flex flex-col gap-4 border-2 border-primary outline-2">
+                        <span className="w-fit px-4 py-2 rounded-4xl font-heading uppercase tracking-widest text-white text-xs font-semibold bg-black">
+                            SOBRE ARENA SUR SAC
+                        </span>
+                        <h2 className="font-heading text-4xl lg:text-5xl text-primary mb-5 font-extrabold mt-2">
+                            Comprometidos con la comercialización de <span className="italic text-black">minerales.</span>
                         </h2>
                         <p className="font-body text-base lg:text-xl mb-4">
-                            En <strong className="text-muted">ARENASUR S.A.C.</strong> desarrollamos actividades relacionadas con la comercialización de minerales auríferos y argentíferos en el Perú.
+                            En ARENASUR S.A.C. desarrollamos actividades relacionadas con la comercialización de minerales auríferos y argentíferos en el Perú.
                         </p>
                         <p className="font-body text-base lg:text-xl mb-4">
                             Nuestra operación comprende la compra y venta, el acopio y el procesamiento de minerales de oro y plata. Trabajamos con una visión orientada al crecimiento y al desarrollo de nuevas oportunidades comerciales dentro del sector minero.
@@ -36,7 +38,7 @@ export default function About(){
 
                         <Link
                         href={"/sobre-nosotros"}
-                        className="w-fit px-6 py-3 rounded-4xl bg-white font-body text-sm text-black border-2 border-transparent hover:border-black transition-colors duration-300 ease-in-out">
+                        className="w-fit px-6 py-3 rounded-4xl bg-white font-body font-semibold text-sm text-black border-2 border-black transition-colors hover:bg-secondary  duration-300 ease-in-out">
                             Conócemos
                         </Link>
                     </div>

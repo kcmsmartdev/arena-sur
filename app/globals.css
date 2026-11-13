@@ -3,24 +3,24 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-   /* Colores principales */
+
   --color-primary: #173F3A;
   --color-secondary: #65A69A;
   --color-accent: #DDA21C;
 
-  /* Tonalidades complementarias */
-  --color-green-light: #B8CFC5;
+
+  --color-green-light: #  ;
   --color-sand: #F0E9DC;
   --color-white-warm: #F8F7F3;
 
-  /* Textos y superficies */
+
   --color-dark: #242824;
-  --color-muted: #777B75;
+  --color-muted: #828282;
   --color-border: #E5E1D8;
   --color-white: #FFFFFF;
 }
 
-@theme inline {
+@theme {
  
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);

@@ -9,19 +9,8 @@ import { IoCloseSharp } from "react-icons/io5";
 import { ImWhatsapp } from "react-icons/im";
 import { MdAlternateEmail } from "react-icons/md";
 
-interface LinksMenu{
-    id:number,
-    href:string,
-    name:string,
-}
-const Menu:LinksMenu[]=[
-    {id:1, href:"/", name:"Inicio"},
-    {id:2, href:"/servicios", name:"Servicios"},
-    {id:3, href:"/nosotros", name:"Nosotros"},
-    {id:4, href:"/responsabilidad", name:"Responsabilidad"},
-    {id:5, href:"/contacto", name:"contacto"},
-]
 
+const iconMenuStyle = "size-6 text-white"
 
 export default function NavbarMovile(){
     const [isOpenMenu, setOpenMenu] =useState(false);
@@ -51,68 +40,80 @@ export default function NavbarMovile(){
     },[])
 
     return(
-        <div className={`w-full  lg:hidden fixed   z-50 rounded-4xl ${scrolled ? "bg-black/20 backdrop-blur-2xl rounded-4x px-3 py-5" :"px-3 py-5"}`}>
-            <nav className={`w-full flex flex-row items-center justify-between`}>
-                <Link href={"/"}>
-                    <Image
+        <div className={`fixed top-0 left-0 z-50 w-full lg:hidden bg-black`}>
+
+            <nav className={`relative z-50 w-full flex flex-row justify-between items-center p-3`}>
+                <Link href="/" aria-label="Inicio" onClick={() => setOpenMenu(false)}>
+                <Image
                     src="/logo-white-color.svg"
-                    alt="logo"
                     width={160}
                     height={40}
-                    className="w-20 h-auto"/>
+                    alt="logo"
+                    className="w-20 h-auto"
+                />
                 </Link>
+
                 <button
-                    type="button"
-                    aria-label="boton"
-                    onClick={()=>setOpenMenu(!isOpenMenu)}
-                    className="p-2 rounded-4xl border-2 border-white">
-                        {isOpenMenu 
-                        ? <IoCloseSharp className="size-5 text-white"/>  
-                        : <HiOutlineMenu  className="size-5 text-white"/>}
+                type="button"
+                onClick={() => setOpenMenu(!isOpenMenu)}
+                aria-label={isOpenMenu ? "Cerrar menú" : "Abrir menú"}
+                className="p-1.5 border-2 border-white rounded-4xl"
+                >
+                {isOpenMenu ? (
+                    <IoCloseSharp className={iconMenuStyle} />
+                ) : (
+                    <HiOutlineMenu className={iconMenuStyle} />
+                )}
                 </button>
-
-                <div className={`absolute top-full left-0 z-40 w-full max-h-[calc(100dvh-80px)] overflow-y-auto overscroll-contain transition-all duration-300 ease-in-out 
-                    ${isOpenMenu ? "translate-y-0 opacity-100 visible" : " -translate-y-full opacity-0 invisible pointer-events-none"} `}>
-                           
-                        <div className="relative z-30 w-full px-5 py-8 bg-white rounded-4xl">
-                            <ul className="flex flex-col gap-2 py-7">
-                                {Menu.map((nav)=>{
-                                    const isActive = pathname === nav.href;
-                                    return(
-                                        <Link 
-                                        key={nav.id}
-                                        href={nav.href} 
-                                        className={`w-fit py-1.5 border-2 border-transparent ${isActive ?" border-b-accent " :""}`}>
-                                            <span className="font-body text-xl">
-                                                {nav.name}
-                                            </span>
-                                        </Link>
-                                    )
-                                })}
-                            </ul>
-
-                            <div className="flex flex-col gap-4 mt-2">
-                                <p className="font-heading font-semibold text-xs text-muted uppercase">
-                                    Datos de contacto
-                                </p>
-
-                                <Link
-                                href={"mailto:"}
-                                className="font-heading text-sm text-muted flex gap-2 items-center">
-                                    <MdAlternateEmail className="text-accent size-4" />
-                                    correo@tucorreo.com.pe
-                                </Link>
-
-                                <Link
-                                href={"#"}
-                                className="font-heading text-sm text-muted flex gap-2 items-center">
-                                     <ImWhatsapp className="text-accent size-4" />
-                                        +51 999 999 999
-                                </Link>
-                            </div>
-                        </div>
-                </div>
             </nav>
+
+
+            <div
+                className={`absolute top-full left-0 w-full h-[calc(100dvh-100%)] transition-all duration-300 ease-in-out ${
+                isOpenMenu
+                    ? "opacity-100 visible translate-y-0"
+                    : "opacity-0 invisible -translate-y-2 pointer-events-none"
+                }`}>
+                
+                <div
+                onClick={() => setOpenMenu(false)}
+                className="absolute inset-0 bg-black/60 backdrop-blur-xs"
+                />
+
+                
+                <div className="relative z-10 mx-5 mt-2 p-6 bg-white rounded-2xl shadow-xl">
+                <ul className="flex flex-col gap-5 text-lg font-medium text-black">
+                    <li>
+                    <Link href="/" onClick={() => setOpenMenu(false)}>
+                        Inicio
+                    </Link>
+                    </li>
+                    
+                    <li>
+                    <Link href="/servicios" onClick={() => setOpenMenu(false)}>
+                        Servicios
+                    </Link>
+                    </li>
+                    <li>
+                    <Link href="/responsabilidad" onClick={() => setOpenMenu(false)}>
+                        Responsabilidad
+                    </Link>
+                    </li>
+                    <li>
+                    <Link href="/sobre-nosotros" onClick={() => setOpenMenu(false)}>
+                        Nosotros
+                    </Link>
+                    </li>
+
+                    <li>
+                    <Link href="/contacto" onClick={() => setOpenMenu(false)}>
+                        Contacto
+                    </Link>
+                    </li>
+                </ul>
+                </div>
+            </div>
         </div>
+
     )
 }
