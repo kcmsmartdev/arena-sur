@@ -19,7 +19,7 @@ export default function Hero() {
                     Comercializadora de <span className="text-accent italic"><strong>minerales</strong></span> en Perú.
                 </h1>
 
-                <p className="font-body text-sm md:text-base text-muted w-full max-w-3xl">
+                <p className="font-body text-base text-black w-full max-w-3xl">
                     En ARENASUR S.A.C. nos dedicamos a la comercialización, acopio y procesamiento de minerales de oro y plata, construyendo relaciones comerciales basadas en la confianza y transparencia.
                 </p>
 
