@@ -1,66 +1,89 @@
-"use client"
-import Link from "next/link";
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
 
-
-interface LinksMenu{
-    id:number,
-    href:string,
-    name:string,
+interface MenuLink {
+  href: string;
+  name: string;
 }
-const Menu:LinksMenu[]=[
-    {id:1, href:"/", name:"Inicio"},
-    {id:2, href:"/servicios", name:"Servicios"},
-    {id:4, href:"/responsabilidad", name:"Responsabilidad"},
-    {id:3, href:"/nosotros", name:"Nosotros"},
-    {id:5, href:"/contacto", name:"contacto"},
-]
-export default function Navbar(){
-    const pathname = usePathname();
-    const[scrolled, setScrolled] = useState(false);
-    useEffect(()=>{
-        
-        const handleScroll =()=>{
-            setScrolled(window.scrollY >50)
-        }
 
-        window.addEventListener("scroll", handleScroll, {passive:true});
-        return window.addEventListener("Scroll", handleScroll);
-    },[])
+// TODO: unifica estas rutas con las del resto del sitio
+// (Hero y Services usan /nuestros-servicios, About usa /sobre-nosotros)
+const menu: MenuLink[] = [
+  { href: "/", name: "Inicio" },
+  { href: "/servicios", name: "Servicios" },
+  { href: "/responsabilidad", name: "Responsabilidad" },
+  { href: "/nosotros", name: "Nosotros" },
+  { href: "/contacto", name: "Contacto" },
+];
 
-    return(
-        <header className="fixed z-50 w-full hidden lg:block bg-black  p-2">
-            <nav className={`w-full max-w-7xl flex flex-row justify-between items-center mx-auto`}>
-              
-                 <Link href={"/"} aria-label="Inicio">
-                    <Image src={"/logo-white-color.svg"} 
-                    width={160} 
-                    height={40} 
-                    alt="logo"
-                    className="w-20 h-auto"/>
+const isActivePath = (pathname: string, href: string) =>
+  href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`);
+
+export default function Navbar() {
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <header
+      className={`fixed inset-x-0 top-0 z-50 hidden border-b transition-colors duration-300 ease-out motion-reduce:transition-none lg:block ${
+        scrolled
+          ? "border-white/10 bg-footer/90 backdrop-blur-md"
+          : "border-transparent bg-footer"
+      }`}
+    >
+      <nav
+        aria-label="Principal"
+        className="mx-auto flex w-full max-w-7xl items-center justify-between px-8 py-3"
+      >
+        <Link
+          href="/"
+          className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+        >
+          <Image
+            src="/logo-white-color.svg"
+            width={160}
+            height={40}
+            alt="ARENASUR S.A.C."
+            priority
+            className="h-auto w-20"
+          />
+        </Link>
+
+        <ul className="flex items-center gap-10">
+          {menu.map(({ href, name }) => {
+            const active = isActivePath(pathname, href);
+
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  aria-current={active ? "page" : undefined}
+                  className={`relative block rounded-sm px-1 py-2 font-body text-sm font-semibold transition-colors duration-200 ease-out after:absolute after:inset-x-1 after:bottom-0.5 after:h-0.5 after:origin-left after:bg-accent after:transition-transform after:duration-200 after:ease-out hover:text-white-warm hover:after:scale-x-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none motion-reduce:after:transition-none ${
+                    active
+                      ? "text-white-warm after:scale-x-100"
+                      : "text-white-warm/75 after:scale-x-0"
+                  }`}
+                >
+                  {name}
                 </Link>
-                
-                <ul className="flex flex-row gap-12 items-center">
-                    {
-                        Menu.map((links)=>{
-                            const isActive = pathname === links.href;
-                            
-                            return(
-                                <li key={links.id} 
-                                className={`py-1.5 border-b border-transparent hover:border-b hover:border-accent transition-all duration-300 ease-in-out ${isActive ? "border-b-accent" :""}`}>
-                                    <Link href={links.href} aria-label={links.name}>
-                                        <span className={`font-body text-white text-sm tracking-normal font-semibold hover:text-white transition-colors duration-300 ease-in-out `}>
-                                            {links.name}
-                                        </span>
-                                    </Link>
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
-            </nav>
-        </header>
-    )
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </header>
+  );
 }

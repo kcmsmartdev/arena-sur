@@ -14,9 +14,10 @@
   --color-white-warm: #F8F7F3;
 
 
+  --color-gray: #F6F5F1;
   --color-dark: #242824;
   --color-muted: #828282;
-  --color-border: #E5E1D8;
+  --color-border: #dcdad4;
   --color-white: #FFFFFF;
 }
 
@@ -38,12 +39,37 @@
   --color-muted: #777B75;
   --color-border: #E5E1D8;
 
+  --color-gray-light: #F6F5F1;
+  --color-gray-dark: #EEEEE7;
   --color-white: #ffffff;
   --color-black: #000000;
 }
 
-.hero {
-  min-height: 100svh;
-  background-size: cover;
-  background-position: center;
+.feature-progress {
+  background: linear-gradient(
+    90deg,
+    #173F3A 0%,
+    #65A69A 30%,
+    #173F3A 68%,
+    #DDA21C 100%
+  );
+  border-radius: 999px;
+  transform: scaleX(0);
+  animation-name: feature-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes feature-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Sin movimiento: la línea queda completa y no hay auto-avance. */
+@media (prefers-reduced-motion: reduce) {
+  .feature-progress {
+    animation: none;
+    transform: scaleX(1);
+  }
 }

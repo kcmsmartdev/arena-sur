@@ -11,8 +11,8 @@ type WaveBackgroundProps = {
 };
 
 export default function WaveBackground({
-  color = "56, 189, 248",
-  lines = 16,
+  color = "255, 216, 0",
+  lines = 20,
   className = "",
 }: WaveBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
